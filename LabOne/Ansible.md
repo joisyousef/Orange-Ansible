@@ -12,7 +12,5 @@ Example inventory for connecting to a Windows machine:
 
 `[windows] winserver ansible_host=192.168.1.10 ansible_user=Administrator ansible_password=your_password ansible_connection=winrm ansible_port=5986 ansible_winrm_server_cert_validation=ignore`
 
-In this example:
-
 - `ansible_connection=winrm` specifies that Ansible will use WinRM to connect.
 - `ansible_winrm_server_cert_validation=ignore` is used to ignore certificate validation for secure connections (you can configure this based on your setup).
