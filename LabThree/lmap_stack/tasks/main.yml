@@ -1,0 +1,46 @@
+# Install Apache
+- name: Install Apache
+  apt:
+    name: apache2
+    state: present
+    update_cache: yes
+  notify: Restart Apache
+
+# Install MySQL
+- name: Install MySQL
+  apt:
+    name: mysql-server
+    state: present
+  notify: Restart MySQL
+
+# Install PHP
+- name: Install PHP and necessary modules
+  apt:
+    name: "{{ item }}"
+    state: present
+  loop:
+  - php
+  - libapache2-mod-php
+  - php-mysql
+  notify: Restart Apache
+
+# Create a MySQL database
+- name: Create MySQL database
+  mysql_db:
+    name: my_database
+    state: present
+
+# Create a MySQL user
+- name: Create MySQL user
+  mysql_user:
+    name: my_user
+    password: "my_password"
+    priv: "my_database.*:ALL"
+    state: present
+
+# Copy test PHP file to the web directory
+- name: Deploy test PHP file
+  template:
+    src: test.php.j2
+    dest: /var/www/html/test.php
+  notify: Restart Apache

@@ -1,0 +1,6 @@
+---
+- name: Configure Nginx on all servers
+  hosts: all
+  become: yes
+  roles:
+    - nginx_setup

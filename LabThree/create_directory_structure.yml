@@ -1,0 +1,40 @@
+- name: Create directory structure with specific permissions and ownership
+  hosts: all
+  become: yes
+  tasks:
+    - name: Ensure the main directory exists
+      file:
+        path: /opt/myapp
+        state: directory
+        mode: "0755"
+        owner: root
+        group: root
+
+    - name: Ensure the subdirectory 'logs' exists
+      file:
+        path: /opt/myapp/logs
+        state: directory
+        mode: "0755"
+        owner: root
+        group: root
+
+    - name: Ensure the subdirectory 'config' exists
+      file:
+        path: /opt/myapp/config
+        state: directory
+        mode: "0700"
+        owner: root
+        group: root
+
+    - name: Ensure the subdirectory 'data' exists
+      file:
+        path: /opt/myapp/data
+        state: directory
+        mode: "0755"
+        owner: root
+        group: root
+
+    - name: Ensure that 'config_file.conf' is absent in the config directory
+      file:
+        path: /opt/myapp/config/config_file.conf
+        state: absent

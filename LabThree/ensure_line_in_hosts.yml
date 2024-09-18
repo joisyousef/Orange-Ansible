@@ -1,0 +1,10 @@
+- name: Ensure a specific line exists in /etc/hosts
+  hosts: all
+  become: yes
+  tasks:
+  - name: Add a specific line to /etc/hosts if it is not already present
+    lineinfile:
+      path: /etc/hosts
+      line: '127.0.0.1 myapp.local'
+      state: present
+      create: yes

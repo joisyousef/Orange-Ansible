@@ -1,0 +1,11 @@
+# Handler to restart Apache
+- name: Restart Apache
+  service:
+    name: apache2
+    state: restarted
+
+# Handler to restart MySQL
+- name: Restart MySQL
+  service:
+    name: mysql
+    state: restarted
